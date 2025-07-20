@@ -1,0 +1,129 @@
+/* TemperatureToggle Styles */
+.temperature-toggle-container {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.temperature-toggle {
+  position: relative;
+  display: inline-flex;
+  width: 80px;
+  height: 36px;
+  border-radius: 20px;
+  background: var(--toggle-bg);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.temperature-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 6px 10px rgba(0, 0, 0, 0.08);
+}
+
+.temperature-toggle:active {
+  transform: translateY(1px);
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.toggle-labels {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.toggle-unit {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  color: var(--text-secondary);
+}
+
+.toggle-unit.active {
+  color: var(--toggle-active-text);
+  font-weight: 700;
+}
+
+.toggle-indicator {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  border-radius: 18px;
+  background: var(--toggle-thumb);
+  top: 0;
+  left: 0;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Анимации */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.temperature-toggle:hover .toggle-indicator {
+  animation: pulse 1.5s infinite;
+}
+
+/* Цветовые переменные */
+:root {
+  --toggle-bg: rgba(0, 0, 0, 0.08);
+  --toggle-thumb: #4361ee;
+  --toggle-active-text: #4361ee;
+}
+
+.App.dark {
+  --toggle-bg: rgba(255, 255, 255, 0.12);
+  --toggle-thumb: #4cc9f0;
+  --toggle-active-text: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .temperature-toggle {
+    width: 74px;
+    height: 32px;
+    border-radius: 18px;
+  }
+  
+  .toggle-unit {
+    font-size: 13px;
+  }
+  
+  .toggle-indicator {
+    border-radius: 16px;
+  }
+}
+
+
+:root {
+  --primary-blue: #4361ee;
+  --cyan: #4cc9f0;
+  --text-color: #212529;
+  --text-secondary: #495057;
+}
+
+.App.dark {
+  --text-color: #f8f9fa;
+  --text-secondary: #adb5bd;
+}

@@ -1,0 +1,124 @@
+.weather-card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.location-info h2 {
+  margin: 0 0 0.2rem 0;
+  font-size: 1.5rem;
+}
+
+.day-of-week {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.temperature-block {
+  text-align: right;
+}
+
+.current-weather {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.temperature {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.weather-description {
+  margin: 0.3rem 0 0 0;
+  text-transform: capitalize;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Обновленные стили для деталей */
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.detail-row {
+  display: flex;
+  align-items: baseline; /* Выравнивание по базовой линии текста */
+}
+
+.detail-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-right: 0.3rem; /* Уменьшенный отступ между названием и значением */
+  min-width: 85px; /* Фиксированная ширина для выравнивания */
+}
+
+.detail-value {
+  font-weight: 500;
+}
+
+/* Специальный компактный стиль для блока ветра-влажности-давления */
+.weather-conditions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .weather-main {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .temperature-block {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .current-weather {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .temperature {
+    font-size: 2rem;
+  }
+  
+  .detail-label {
+    min-width: 75px;
+    font-size: 0.85rem;
+  }
+  
+  .detail-value {
+    font-size: 0.95rem;
+  }
+}
+

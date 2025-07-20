@@ -1,0 +1,197 @@
+/* TemperatureToggle - Premium Version */
+.temperature-toggle-container {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.temperature-toggle {
+  position: relative;
+  width: 96px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.toggle-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--toggle-track-bg);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  transition: background 0.3s ease;
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.toggle-thumb {
+  position: absolute;
+  width: 48px;
+  height: 36px;
+  border-radius: 18px;
+  background: var(--toggle-thumb-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 0.3s ease;
+  z-index: 2;
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 6px rgba(0, 0, 0, 0.1);
+  left: 2px;
+}
+
+.temperature-toggle[data-unit="F"] .toggle-thumb {
+  transform: translateX(48px);
+}
+
+.toggle-unit {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--toggle-thumb-text);
+  transition: color 0.3s ease;
+}
+
+/* Текстовые метки */
+.temperature-toggle::before,
+.temperature-toggle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--toggle-text);
+  z-index: 1;
+  transition: 
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.temperature-toggle::before {
+  content: '°C';
+  left: 14px;
+  opacity: 0;
+}
+
+.temperature-toggle::after {
+  content: '°F';
+  right: 14px;
+  opacity: 0;
+}
+
+.temperature-toggle[data-unit="C"]::before {
+  opacity: 1;
+}
+
+.temperature-toggle[data-unit="F"]::after {
+  opacity: 1;
+}
+
+/* Интерактивность */
+.temperature-toggle:hover .toggle-track {
+  background: var(--toggle-track-hover);
+}
+
+.temperature-toggle:hover .toggle-thumb {
+  background: var(--toggle-thumb-hover);
+  transform: translateX(var(--hover-offset));
+}
+
+.temperature-toggle[data-unit="C"]:hover .toggle-thumb {
+  --hover-offset: 8px;
+}
+
+.temperature-toggle[data-unit="F"]:hover .toggle-thumb {
+  --hover-offset: 40px;
+}
+
+/* Анимация при переключении */
+@keyframes subtle-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.temperature-toggle:active .toggle-thumb {
+  animation: subtle-pulse 0.3s ease;
+}
+
+/* Цветовые темы */
+:root {
+  /* Трек */
+  --toggle-track-bg: rgba(0, 0, 0, 0.07);
+  --toggle-track-hover: rgba(0, 0, 0, 0.12);
+  
+  /* Бегунок */
+  --toggle-thumb-bg: #4361ee;
+  --toggle-thumb-hover: #3a0ca3;
+  --toggle-thumb-text: #ffffff;
+  
+  /* Текст */
+  --toggle-text: #6c757d;
+}
+
+.App.dark {
+  /* Трек */
+  --toggle-track-bg: rgba(255, 255, 255, 0.1);
+  --toggle-track-hover: rgba(255, 255, 255, 0.15);
+  
+  /* Бегунок */
+  --toggle-thumb-bg: #4cc9f0;
+  --toggle-thumb-hover: #4895ef;
+  --toggle-thumb-text: #121212;
+  
+  /* Текст */
+  --toggle-text: rgba(255, 255, 255, 0.7);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .temperature-toggle {
+    width: 86px;
+    height: 36px;
+  }
+  
+  .toggle-thumb {
+    width: 42px;
+    height: 32px;
+    border-radius: 16px;
+  }
+  
+  .temperature-toggle[data-unit="F"] .toggle-thumb {
+    transform: translateX(42px);
+  }
+  
+  .temperature-toggle::before {
+    left: 12px;
+  }
+  
+  .temperature-toggle::after {
+    right: 12px;
+  }
+  
+  .temperature-toggle[data-unit="C"]:hover .toggle-thumb {
+    --hover-offset: 6px;
+  }
+  
+  .temperature-toggle[data-unit="F"]:hover .toggle-thumb {
+    --hover-offset: 36px;
+  }
+}

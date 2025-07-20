@@ -1,0 +1,214 @@
+.weather-map-container {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: all var(--transition-duration) ease;
+  overflow: hidden;
+}
+
+.weather-map-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.weather-map-header h3 {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.map-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.map-control-btn {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-control-btn:hover {
+  border-color: var(--btn-color);
+  color: var(--btn-color);
+}
+
+.map-control-btn.active {
+  background-color: var(--btn-active-bg);
+  border-color: var(--btn-color);
+  color: var(--btn-color);
+  font-weight: 600;
+}
+
+.map-control-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--btn-color);
+}
+
+.map-btn-icon {
+  font-size: 1.1em;
+}
+
+.map-btn-label {
+  white-space: nowrap;
+}
+
+.map-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 соотношение */
+  height: 0;
+  overflow: hidden;
+  margin-top: 1rem;
+  background: var(--map-bg);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.map-container.loading {
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  transition: opacity 0.5s ease;
+}
+
+.map-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: var(--loading-overlay);
+  z-index: 10;
+}
+
+.map-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--accent-color);
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.map-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.map-note {
+  font-size: 0.85rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.map-note a {
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.map-note a:hover {
+  text-decoration: underline;
+}
+
+.map-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+/* Темная тема */
+.weather-map-container.dark {
+  --map-bg: #1e1e1e;
+}
+
+.weather-map-container.dark .map-control-btn {
+  border-color: #444;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .weather-map-header {
+    flex-direction: column;
+  }
+  
+  .map-controls {
+    justify-content: center;
+  }
+  
+  .map-control-btn {
+    padding: 0.5rem;
+  }
+  
+  .map-btn-label {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .weather-map-container {
+    padding: 1rem;
+  }
+  
+  .map-container {
+    padding-bottom: 75%; /* 4:3 для мобильных */
+  }
+}

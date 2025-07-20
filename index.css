@@ -1,0 +1,32 @@
+/* src/index.css */
+:root {
+  --transition-duration: 0.3s;
+}
+
+/* Базовые стили переходов */
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition: 
+    background-color var(--transition-duration) ease,
+    color var(--transition-duration) ease,
+    border-color var(--transition-duration) ease,
+    opacity var(--transition-duration) ease,
+    box-shadow var(--transition-duration) ease,
+    transform var(--transition-duration) ease !important;
+}
+
+/* Отключение переходов для специфических элементов */
+.theme-transition noscript,
+.theme-transition script,
+.theme-transition style,
+.theme-transition .no-theme-transition {
+  transition: none !important;
+}
+
+/* Добавить в самый конец файла */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
